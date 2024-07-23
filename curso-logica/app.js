@@ -1,8 +1,5 @@
 'use strict'
-var intentos = 5;
-var i = 1;
-var numero = numeroRandom();
-var numerosR = [];
+
 function AsignarTextoElemento(elemento , texto){
     var elementoHTML = document.querySelector(elemento);
     elementoHTML.innerHTML = texto
@@ -38,6 +35,7 @@ function intento(){
         i++;
         limpiarCaja();
     }else if(restantes == 0){
+        limpiarCaja();
         var input = document.getElementById('numeroIntento');
         var btn = document.getElementById('Intento');
         btn.disabled = true
@@ -55,9 +53,9 @@ function reintentar(){
     AsignarTextoElemento('p' , 'Nuevo juego, ingrese un numero del 1 al 10');
     i = 1
     var input = document.getElementById('numeroIntento');
+    input.disabled = false;
     var numero = numeroRandom();
     console.log(numero);
-    input.disabled = false;
     AsignarTextoElemento('p' , 'Indica un numero del 1 al 10');
 };
 AsignarTextoElemento('h1', 'Juego de numero secreto');
