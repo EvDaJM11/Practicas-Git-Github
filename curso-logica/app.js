@@ -1,5 +1,8 @@
 'use strict'
-
+var intentos = 5;
+var i = 1;
+var numero = numeroRandom();
+var numerosR = [];
 function AsignarTextoElemento(elemento , texto){
     var elementoHTML = document.querySelector(elemento);
     elementoHTML.innerHTML = texto
@@ -19,25 +22,37 @@ function intento(){
     if (i <= intentos){
         var restantes = intentos - i
         if (numeroIntento == numero){
-            AsignarTextoElemento('p' , 'El numero es correcto');
+            AsignarTextoElemento('p' , 'El numero es correcto, reinicie para continuar');
+            var input = document.getElementById('numeroIntento');
+            var btn = document.getElementById('Intento');
+            btn.disabled = true
+            input.disabled = true;
+            limpiarCaja();
         }else if(numeroIntento > numero){
             restantes - i
             AsignarTextoElemento('p' , 'El numero secreto es menor, le quedan '+restantes+" intentos");
-            i++;
         }else{
             var restantes = intentos - i
             AsignarTextoElemento('p' , 'El numero secreto es mayor, le quedan '+restantes+" intentos");
-            i++;
         }
+        i++;
+        limpiarCaja();
     }else if(restantes == 0){
         var input = document.getElementById('numeroIntento');
+        var btn = document.getElementById('Intento');
+        btn.disabled = true
         input.disabled = true;
         AsignarTextoElemento('p' , 'Ya termino sus intentos, por favor reinicie');
+        limpiarCaja();
     }
     
 };
-
+function limpiarCaja(){
+    document.querySelector('#numeroIntento').value = '';
+};
 function reintentar(){
+    limpiarCaja();
+    AsignarTextoElemento('p' , 'Nuevo juego, ingrese un numero del 1 al 10');
     i = 1
     var input = document.getElementById('numeroIntento');
     var numero = numeroRandom();
